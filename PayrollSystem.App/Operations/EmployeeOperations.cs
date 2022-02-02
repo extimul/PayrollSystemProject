@@ -59,7 +59,7 @@ public class EmployeeOperations : OperationsBase
         var salary = EmployeeManager.GetEmployeeSalary(new ContextInfo(branchId, divisionId, employeeId));
         Console.WriteLine("Зарпалата сотрудника");
         Console.WriteLine($"Тип зарплаты: {salary.SalaryTypeName}");
-        Console.WriteLine($"Итого: {salary.CalculateEmployeeSalary().ToString("C", CultureInfo.CurrentCulture)}");
+        Console.WriteLine($"Итого: {salary.GetEmployeeSalary().ToString("C", CultureInfo.CurrentCulture)}");
     }
     public void GetEmployeesByFilteredSalary()
     {
@@ -69,7 +69,7 @@ public class EmployeeOperations : OperationsBase
 
         foreach (var employee in employees)
         {
-            var employeeSalary = employee.Salary.CalculateEmployeeSalary();
+            var employeeSalary = employee.Salary.GetEmployeeSalary();
             if (employeeSalary >= filter)
             {
                 Console.WriteLine(employee.FullName);
@@ -92,13 +92,13 @@ public class EmployeeOperations : OperationsBase
     public void GetTopEmployeesWithHighestSalary()
     {
         var sortedEmployees = GetAllEmployees()
-            .OrderByDescending(x => x.Salary.CalculateEmployeeSalary());
+            .OrderByDescending(x => x.Salary.GetEmployeeSalary());
 
         var listSize = Convert.ToInt32(ConsoleUtil.StrUserInputHandler("Введите колличество сотрудников"));
 
         foreach (var employee in sortedEmployees.Take(listSize))
         {
-            Console.WriteLine($"{employee.FullName} - {employee.Salary.CalculateEmployeeSalary()}");
+            Console.WriteLine($"{employee.FullName} - {employee.Salary.GetEmployeeSalary()}");
         }
     }
 }

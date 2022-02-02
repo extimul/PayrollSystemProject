@@ -13,7 +13,9 @@ public class EmployeeManager : IEmployeeManager
     {
         try
         {
-            DataContext.Branches[contextInfo.BranchId].Divisions[contextInfo.DivisionId].Employees.Add(employee);
+            DataContext.Branches[contextInfo.BranchId]
+                .Divisions[contextInfo.DivisionId]
+                .Employees.Add(employee);
         }
         catch (Exception)
         {
@@ -30,7 +32,8 @@ public class EmployeeManager : IEmployeeManager
                 .Divisions[contextInfo.DivisionId]
                 .Employees[contextInfo.EmployeeId];
             
-            DataContext.Branches[contextInfo.BranchId]
+            DataContext
+                .Branches[contextInfo.BranchId]
                 .Divisions[contextInfo.DivisionId]
                 .Employees.Remove(employee);
         }

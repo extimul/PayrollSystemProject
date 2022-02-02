@@ -6,6 +6,7 @@ public class FixedSalary : ISalary
 {
     public const double TotalHours = 150;
 
+    public CalculateSalary CalculateSalary { get; }
     public string SalaryTypeName => "Фиксированная";
     public double SalaryAmount { get; }
     public double HoursWorked { get; set; }
@@ -15,17 +16,23 @@ public class FixedSalary : ISalary
         SalaryAmount = 15000;
     }
 
-    public FixedSalary(double salaryAmount)
+    public FixedSalary(double salaryAmount) : this()
     {
         SalaryAmount = salaryAmount;
+        CalculateSalary += CalculateEmployeeSalary;
     }
 
     public FixedSalary(double salaryAmount, double hoursWorked) : this(salaryAmount)
     {
         HoursWorked = hoursWorked;
     }
+    
+    public double GetEmployeeSalary()
+    {
+        return CalculateSalary.Invoke();
+    }
 
-    public double CalculateEmployeeSalary()
+    private double CalculateEmployeeSalary()
     {
         return (SalaryAmount / TotalHours) * HoursWorked;
     }

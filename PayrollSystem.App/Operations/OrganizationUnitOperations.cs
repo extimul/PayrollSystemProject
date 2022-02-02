@@ -116,7 +116,7 @@ public class OrganizationUnitOperations : OperationsBase
             .ToList();
         for (int i = 0; i < employees.Count; i++)
         {
-            Console.WriteLine($"{i+1}.{employees[i].FullName} - З/п: {employees[i].Salary.CalculateEmployeeSalary():F3}");
+            Console.WriteLine($"{i+1}.{employees[i].FullName} - З/п: {employees[i].Salary.GetEmployeeSalary():F3}");
         }
     }
 
@@ -131,7 +131,7 @@ public class OrganizationUnitOperations : OperationsBase
             double avgSalary = 0;
             foreach (var div in branches[i].Divisions)
             {
-                avgSalary = div.Employees.Average(x => x.Salary.CalculateEmployeeSalary());
+                avgSalary = div.Employees.Average(x => x.Salary.GetEmployeeSalary());
             }
             Console.WriteLine($"{i+1}.{branches[i].Name} - Среднее з/п: {avgSalary:F3}");
         }
